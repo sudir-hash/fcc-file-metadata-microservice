@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 
 
 
-app.post('/api/upload',upload.array("files"),(req,res)=>{
+app.post('/api/upload',upload.array("upfile"),(req,res)=>{
     let file    =   req.files[0];
     let result  =   {
         name    :   file.originalname,
