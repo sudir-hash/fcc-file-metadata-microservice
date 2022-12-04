@@ -2,8 +2,11 @@ const express   =   require('express');
 const app       =   express();
 const cors      =   require('cors');
 require('dotenv').config();
+const multer = require("multer");
 
 
+
+const upload = multer({ dest: 'uploads/' })
 
 
 app.use(cors())
@@ -17,6 +20,15 @@ app.get('/', function (req, res) {
 
 
 
+app.post('/api/upload',upload.array("files"),(req,res)=>{
+    let file    =   req.files[0];
+    let result  =   {
+        name    :   file.originalname,
+        type    :   file.originalname.split('.')[1],
+        size    :   file.size
+    }
+    res.json(result);
+})
 
 
 
